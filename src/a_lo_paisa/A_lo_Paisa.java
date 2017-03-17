@@ -6,8 +6,11 @@
 package a_lo_paisa;
 import java.util.*;
 /**
- *
- * @author Usuario
+ * Clase para almacenar materia prima.
+ * @author Lina Paola Correa 
+ * @author Diego Alejandro Guitierrez Rojas
+ * @author Diego Alezander Ramirez Vela
+ * @author Julian David Escobar Jamioy
  */
 public class A_lo_Paisa {
 
@@ -15,198 +18,296 @@ public class A_lo_Paisa {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        int a=0;
+        int b=0;
         int n=0;
-        int m=0;
-        Empleados[] empleado=new Empleados[50];
-        Nomina[] nomina=new Nomina[50];
-        Gastos[] gastos=new Gastos[500];
-        Productos[] producto=new Productos[10];
+        ArrayList <Empleados> empleado=new ArrayList();
+        ArrayList <Nomina> nomina=new ArrayList();
+        ArrayList <Gastos> gastos=new ArrayList();
+        ArrayList <Productos> producto=new ArrayList();
+        ArrayList <Factura> factura=new ArrayList();
+        ArrayList <Bodega> bodega=new ArrayList();
+        ArrayList <Horario> hora=new ArrayList();
+        Horario hora1=new Horario();
+        Empleados p=new Empleados();
+        Empleados p1=new Empleados();
+        Empleados p2=new Empleados();
+        Bodega q=new Bodega();
+        Bodega q1=new Bodega();
+        Bodega q2=new Bodega();
+        Factura fact=new Factura(b);
+        Productos produc=new Productos(); 
+        Productos produc1=new Productos();
+        Productos produc2=new Productos();
+        Scanner leer= new Scanner(System.in);
+        q.setCod(100);
+        q.setCantidad(40);
+        q.setMprima("Queso");
+        q.setPrecio_und(300);
+        bodega.add(q);
+        q1.setCod(101);
+        q1.setCantidad(50);
+        q1.setMprima("Vegetales");
+        q1.setPrecio_und(240);
+        bodega.add(q1);
+        q2.setCod(102);
+        q2.setCantidad(30);
+        q2.setMprima("Carne");
+        q2.setPrecio_und(430);
+        bodega.add(q2);
+        p.setId(1);
+        p.setNombre("Marco");
+        p.setCargo("a");
+        p.setSalario(100);
+        empleado.add(p);
+        p1.setId(2);
+        p1.setNombre("Sofia");
+        p1.setCargo("r");
+        p1.setSalario(140);
+        empleado.add(p1);
+        p2.setId(3);
+        p2.setNombre("Helena");
+        p2.setCargo("t");
+        p2.setSalario(100);
+        empleado.add(p2);
+        produc.setCod(120);
+        produc.setIngred(bodega.get(1));
+        produc.setIngred(bodega.get(2));
+        produc.setNom("EspecialA");
+        produc.setPrecio(604);
+        producto.add(produc);
+        produc1.setCod(130);
+        produc1.setIngred(bodega.get(0));
+        produc1.setIngred(bodega.get(2));
+        produc1.setNom("EspecialB");
+        produc1.setPrecio(503);
+        producto.add(produc1);
+        produc2.setCod(140);
+        produc2.setIngred(bodega.get(0));
+        produc2.setIngred(bodega.get(1));
+        produc2.setNom("EspecialC");
+        produc2.setPrecio(540);
+        producto.add(produc2);
         /**/
         do{
-            System.out.println("1. Registrar empleado");
-            System.out.println("2. Registrar producto");
+            System.out.println("1. Registrar hora entrada");
+            System.out.println("2. Registrar hora salida");
             System.out.println("3. Registrar gastos");
-            System.out.println("4. Registrar entradas");
-            System.out.println("5. Registrar hora entrada");
-            System.out.println("6. Registrar hora salida");
-            System.out.println("7. Consulta");
-            Scanner leer= new Scanner(System.in);
+            System.out.println("4. Registrar ventas");
+            System.out.println("5. Consultar productos en bodega");
+            System.out.println("6. Consultar gastos");
+            System.out.println("7. Consultar ventas");
             int ch=leer.nextInt();
             switch(ch){
                 case 1:
-                    int a=0;                   
-                    System.out.println("Id");
+                    do{
+                    System.out.println("Ingrese ID de empleado");
                     int id=leer.nextInt();
-                    System.out.println("Nombre");
-                    String nom=leer.next();
-                    System.out.println("Hora de entrada");
-                    int h_ent=leer.nextInt();
-                    System.out.println("Hora de salida");
-                    int h_sal=leer.nextInt();
-                    System.out.println("Salario basico");
-                    double basico=leer.nextDouble();
-                    System.out.println("Auxilio de transporte");
-                    double transp=leer.nextDouble();                   
-                    nomina[a]=new Nomina();
-                    nomina[a].setBasico(basico);
-                    nomina[a].setAuxtransp(transp);
-                    empleado[a]=new Empleados(nom, id, h_sal, h_ent, nomina[a]);
+                    for(Empleados e: empleado){
+                        if(e.getId()==id){
+                            System.out.println("Ingrese hora de entrada");
+                            int hor=leer.nextInt();                   
+                            hora1.setEmpleado(e);
+                            hora1.setH_entrada(hor);
+                        }
+                    }
+                    System.out.println("Registrar otra hora? 1.Si 2.No");
+                    a=leer.nextInt();
+                    }while(a==1);
                     break;
                 case 2:
+                    do{
+                    System.out.println("Ingrese empleado");
+                    int id=leer.nextInt();
+                    for(Empleados e: empleado){
+                        if(e.getId()==id){
+                            System.out.println("Ingrese hora de salida");
+                            int hor=leer.nextInt();
+                            hora1.setEmpleado(e);
+                            hora1.setH_salida(hor);
+                        }
+                    }  
+                    System.out.println("Registrar otra hora? 1.Si 2.No");
+                    a=leer.nextInt();
+                    }while(a==1);
                     break;
                 case 3:
-                    int b=-1;
-                    System.out.println("1. Nomina");
-                    System.out.println("2. Productos");
-                    System.out.println("3. Arriendo");
-                    System.out.println("4. Servicios");
-                    System.out.println("5. Otras compras");
+                    Gastos gasto=new Gastos();
+                    do{
+                    System.out.println("1. Servicios");
+                    System.out.println("2. Arriendo");
+                    System.out.println("3. Impuesto");
+                    System.out.println("4. Compras");
                     int ch1=leer.nextInt();
                     switch(ch1){
                         case 1:
-                            do{
-                            System.out.println("Ingrese Id del empleado");
-                            int id1=leer.nextInt();
-                            do{
-                                b++;
-                                if(id1==empleado[b].getId()){
-                                    System.out.println("Ingrese comisiones");
-                                    double comisiones=leer.nextDouble();
-                                    System.out.println("Ingres horas extras");
-                                    int h_ext=leer.nextInt();
-                                    nomina[b].setComisiones(comisiones);
-                                    nomina[b].setH_extras(h_ext);
-                                    gastos[n]=new Gastos(nomina[b].sacarNomina());
-                                    n++;
-                                }
-                            }while(id1!=empleado[b].getId());
-                            System.out.println("Desea agregar otro empleado");
-                                System.out.println("1. Si");
-                                System.out.println("2. No");
-                                m=leer.nextInt();
-                            }while(m==1);
-                            break;
-                        case 2:                          
-                            do{
-                                System.out.println("Producto");
-                                String nam=leer.next();
-                                System.out.println("Cantidad");
-                                int cant=leer.nextInt();
-                                do{
-                                    b++;
-                                    if(nam==producto[b].getNom()){
-                                        double precio=cant*producto[b].getPrecio();
-                                        gastos[n]=new Gastos(precio);
-                                        n++;
-                                    }
-                                }while(nam!=producto[b].getNom());
-                                System.out.println("Desea agregar otro producto");
-                                System.out.println("1. Si");
-                                System.out.println("2. No");
-                                m=leer.nextInt();
-                            }while(m==1);
-                            break;
-                        case 3:
-                            System.out.println("Pago de arriendo");
-                            double arriendo=leer.nextDouble();
-                            gastos[n]=new Gastos(arriendo);
-                            n++;
-                            break;
-                        case 4:
-                            System.out.println("Pago de servicios");
                             double servicios=leer.nextDouble();
-                            gastos[n]=new Gastos(servicios);
-                            n++;
-                            break;
-                        case 5:
-                            System.out.println("Otros gastos");
-                            double o_gastos=leer.nextDouble();
-                            gastos[n]=new Gastos(o_gastos);
-                            n++;
-                            break;
-                    }
-                    break;
-                case 4:
-                    int p=-1;
-                    do{
-                        System.out.println("Ingrese nombre del producto");
-                        String nombre=leer.next();
-                        do{
-                            p++;
-                            if(nombre==producto[p].getNom()){
-                                System.out.println("Cantidad");
-                                int t=leer.nextInt();
-                                gastos[n]=new Gastos(t*producto[p].getPrecio());
-                                n++;
-                            }
-                        }while(nombre!=producto[p].getNom());
-                        System.out.println("Desea agregar otro producto");
-                        System.out.println("1. Si");
-                        System.out.println("2. No");
-                        m=leer.nextInt();
-                    }while(m==1);
-                    break;
-                case 5:
-                    System.out.println("Que desea consultar");
-                    System.out.println("1. Hora de salida de un empleado");
-                    System.out.println("2. Hora de entrada de un empleado");
-                    System.out.println("3. Gastos");
-                    System.out.println("4. Entradas");
-                    int f=leer.nextInt();
-                    switch(f){
-                        case 1:
-                            int r=-1;
-                            do{
-                                System.out.println("Id del empleado");
-                                int id2=leer.nextInt();
-                                do{
-                                    r++;
-                                    if(id2==empleado[r].getId()){
-                                        System.out.println(empleado[r].getH_salida());
-                                    }
-                                }while(id2!=empleado[r].getId());
-                                System.out.println("Desea consultar otro empleado");
-                                System.out.println("1. Si");
-                                System.out.println("2. No");
-                                m=leer.nextInt();
-                            }while(m==1);
+                            gasto.setServicios(servicios);
                             break;
                         case 2:
-                            int w=-1;
-                            do{
-                                System.out.println("Id del empleado");
-                                int id2=leer.nextInt();
-                                do{
-                                    w++;
-                                    if(id2==empleado[w].getId()){
-                                        System.out.println(empleado[w].getH_entrada());
-                                    }
-                                }while(id2!=empleado[w].getId());
-                                System.out.println("Desea agregar otro empleado");
-                                System.out.println("1. Si");
-                                System.out.println("2. No");
-                                m=leer.nextInt();
-                            }while(m==1);
+                            double arriendos=leer.nextDouble();                        
+                            gasto.setArriendos(arriendos);
                             break;
                         case 3:
-                            System.out.println("1. Gasto en un dia");
-                            System.out.println("2. Gasto en un mes");
-                            System.out.println("3. Gasto anual");
-                            int u=leer.nextInt();
-                            switch(u){
-                                case 1:
-                                    
-                                    break;
-                                case 2:
-                                    break;
-                                case 3:
-                                    break;
-                            }
+                            double impuesto=leer.nextDouble();
+                            gasto.setImpuestos(impuesto);
                             break;
                         case 4:
+                            double compras=leer.nextDouble();
+                            gasto.setCompras(compras);
                             break;
                     }
+                    System.out.println("Otro registro? 1. Si  2. No");
+                    a=leer.nextInt();
+                    }while(a==1);
+                    gasto.setTot();
+                    gastos.add(gasto);
+                    int u=0;
                     break;
+                case 4:
+                    do{
+                        int cod;
+                        System.out.println("Agregar codigo producto");
+                        cod=leer.nextInt();
+                        for(Productos Producto: producto){
+                            if(Producto.getCod()==cod){
+                                fact.adicionar(Producto);
+                                int i=0;
+                                for(Bodega w:Producto.getIngred()){
+                                    if(w.getCod()==bodega.get(i).getCod()){
+                                        int l=bodega.get(i).getCantidad()-1;
+                                        bodega.get(i).setCantidad(l);
+                                    }
+                                }
+                            }
+                        }
+                        System.out.println("Otro producto? 1. Si  2.No");
+                        a=leer.nextInt();
+                    }while(a==1);
+                    fact.calcularTotal();
+                    factura.add(fact);
+                    System.out.println(fact.calcularTotal());
+                    break;
+                case 5:
+                    do{
+                        System.out.println("Nombre del producto");
+                        int codig;
+                        codig=leer.nextInt();
+                        for(Bodega t: bodega){
+                            if(t.getCod()==codig){
+                                System.out.println(t.getCantidad());
+                            }
+                        }
+                        System.out.println("Otra consulta? 1.Si 2.No");
+                        a=leer.nextInt();
+                    }while(a==1);
+                    break;
+                case 6:
+                    do{
+                        System.out.println("1. Por dia");
+                        System.out.println("2. Por mes");
+                        System.out.println("3. Por año");
+                        int ch2=leer.nextInt();
+                        switch(ch2){
+                            case 1:
+                                double Total=0;
+                                System.out.println("Ingrese dia mes y año");
+                                int dia=leer.nextInt();
+                                int mes=leer.nextInt();
+                                int anio=leer.nextInt();
+                                mes=mes-1;
+                                for(Gastos g:gastos){
+                                    if(g.getFecha().getDia()==dia && g.getFecha().getMes()==mes && g.getFecha().getAnnio()==anio){
+                                        Total=Total+g.getTot();
+                                    }
+                                }
+                                System.out.println(Total);
+                                break;
+                            case 2:
+                                Total=0;
+                                System.out.println("Ingrese mes y año");
+                                mes=leer.nextInt();
+                                anio=leer.nextInt();
+                                mes=mes-1;
+                                for(Gastos g:gastos){
+                                    if(g.getFecha().getMes()==mes && g.getFecha().getAnnio()==anio){
+                                        Total=Total+g.getTot();
+                                    }
+                                }
+                                System.out.println(Total);
+                                break;
+                            case 3:
+                                Total=0;
+                                System.out.println("Ingrese año");
+                                anio=leer.nextInt();
+                                for(Gastos g:gastos){
+                                    if(g.getFecha().getAnnio()==anio){
+                                        Total=Total+g.getTot();
+                                    }
+                                }
+                                System.out.println(Total);
+                                break;
+                        }
+                        System.out.println("Otra consulta? 1.Si 2.No");
+                        a=leer.nextInt();
+                    }while(a==1);
+                    break;
+                case 7:
+                    do{
+                        System.out.println("1. Por dia");
+                        System.out.println("2. Por mes");
+                        System.out.println("3. Por año");
+                        int ch3=leer.nextInt();
+                        switch(ch3){
+                            case 1:
+                                double Total=0;
+                                System.out.println("Ingrese dia mes y año");
+                                int dia=leer.nextInt();
+                                int mes=leer.nextInt();
+                                int anio=leer.nextInt();
+                                int s=0;
+                                mes=mes-1;
+                                for(Factura x: factura){
+                                    if(x.getFecha().getDia()==dia && x.getFecha().getMes()==mes && x.getFecha().getAnnio()==anio){
+                                        Total=Total+x.calcularTotal();
+                                    }
+                                    s++;
+                                }
+                                System.out.println(Total);
+                                break;
+                            case 2:
+                                Total=0;
+                                System.out.println("Ingrese mes y año");
+                                mes=leer.nextInt();
+                                anio=leer.nextInt();
+                                s=0;
+                                mes=mes-1;
+                                for(Factura x:factura){
+                                    if(x.getFecha().getMes()==mes && x.getFecha().getAnnio()==anio){
+                                        Total=Total+x.calcularTotal();
+                                    }
+                                    s++;
+                                }
+                                System.out.println(Total);
+                                break;
+                            case 3:
+                                Total=0;
+                                System.out.println("Ingrese dia mes y año");
+                                anio=leer.nextInt();
+                                s=0;
+                                for(Factura x:factura){
+                                    if(x.getFecha().getAnnio()==anio){
+                                        Total=Total+x.calcularTotal();
+                                    }
+                                    s++;
+                                }
+                                System.out.println(Total);
+                                break;
+                        }
+                        System.out.println("Otra consulta? 1.Si 2.No");
+                        a=leer.nextInt();
+                    }while(a==1);
+                    break;    
             }
         }while(n==0);
     }
